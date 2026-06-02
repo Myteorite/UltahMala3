@@ -75,7 +75,7 @@
 
         /* STICKER STYLE */
         .sticker { width: 120px; height: auto; margin: 10px auto; display: block; }
-        .bonk-sticker { width: 150px; height: auto; margin: 0 auto 15px auto; display: block; transition: transform 0.1s; }
+        .bonk-sticker { width: 150px; height: auto; margin: 0 auto 15px auto; display: block; }
 
         @media (max-width: 480px) {
             body { padding: 15px; } h1 { font-size: 20px; } h2 { font-size: 12px; }
@@ -149,18 +149,18 @@
     <div id="page5" class="page">
         <h2>LEVEL 5: TRAINING MODEL M.L.</h2>
         
-        <img id="bonk-img" src="media/bonk-cat-ouch.gif" class="bonk-sticker" alt="Bonk Cat">
+        <img id="slap-img" src="media/d89805a355094ea78792c715d1ffb634upqCWTPcLnhhyTLc-0.png" class="bonk-sticker" alt="Slap Cat">
 
         <div class="box-text">
-            > Agar kelalaian ini tidak terulang, kita harus melatih <i>Machine Learning Model</i> dengan metode <strong>Backpropagation</strong> (alias digeplak pakai koran).<br><br>
-            > TUGAS: "Bonk" kepala Azmy berkali-kali untuk melatih ingatannya sampai akurasi 100%!
+            > Agar kelalaian ini tidak terulang, kita harus melatih <i>Machine Learning Model</i> dengan metode <strong>Backpropagation</strong> (alias digeplak fisiknya).<br><br>
+            > TUGAS: "Tampar" pipi Azmy berkali-kali untuk melatih ingatannya sampai akurasi 100%!
         </div>
         <div class="progress-container">
             <div class="progress-fill" id="trainBar" style="background-color: #e74c3c;"></div>
         </div>
         <div id="trainText" style="font-size: 10px; color: #e74c3c; margin-bottom: 15px;">Akurasi Ingatan: 0%</div>
         
-        <button class="btn-next" id="btn-train" onclick="trainModel()" style="background: #f1c40f; border-color: #f1c40f; color: #000; margin-top: 0; font-size: 14px;">BONK AZMY! 🔨</button>
+        <button class="btn-next" id="btn-train" onclick="trainModel()" style="background: #f1c40f; border-color: #f1c40f; color: #000; margin-top: 0; font-size: 14px;">TAMPAR AZMY! 🖐️</button>
         <button class="btn-next" id="btn-next-5" onclick="goToPage(6)" style="display:none;">OTAK AZMY SUDAH BENAR! LANJUT ▼</button>
     </div>
 
@@ -301,17 +301,20 @@
             document.getElementById("btn-next-4").style.display = "block";
         }
 
-        // LEVEL 5: TRAINING MODEL MACHINE LEARNING (SPAM CLICK)
+        // LEVEL 5: TRAINING MODEL MACHINE LEARNING (SLAP SCRIPT)
         let accuracy = 0;
         function trainModel() {
-            // Trik memuat ulang GIF agar memukul berulang kali saat dipencet
-            let bonkImg = document.getElementById("bonk-img");
-            bonkImg.src = "media/bonk-cat-ouch.gif?t=" + new Date().getTime();
+            let slapImg = document.getElementById("slap-img");
             
-            // Efek getar cepat
-            bonkImg.style.transform = "scale(0.9)";
-            setTimeout(() => { bonkImg.style.transform = "scale(1)"; }, 50);
+            // Ubah ke gambar tertampar
+            slapImg.src = "media/d89805a355094ea78792c715d1ffb634upqCWTPcLnhhyTLc-8.png";
+            
+            // Kembalikan ke gambar diam setelah 150ms
+            setTimeout(() => { 
+                slapImg.src = "media/d89805a355094ea78792c715d1ffb634upqCWTPcLnhhyTLc-0.png"; 
+            }, 150);
 
+            // Tambah akurasi
             accuracy += 10; 
             if(accuracy > 100) accuracy = 100;
             
@@ -374,7 +377,7 @@
         btnNo.addEventListener('mouseover', moveBtn);
         btnNo.addEventListener('touchstart', moveBtn, {passive: false});
 
-        // LEVEL 9: PHOTO CONTROLS
+        // LEVEL 9: PHOTO CONTROLS (.JPEG FORMAT)
         function showPhoto(num) {
             const img = document.getElementById('finalPhoto');
             const placeholder = document.getElementById('photo-placeholder');
@@ -383,11 +386,11 @@
             img.style.display = 'block';
 
             if(num === 1) {
-                img.src = 'media/img1.jpg';
+                img.src = 'media/img1.jpeg';
             } else if(num === 2) {
-                img.src = 'media/img2.jpg';
+                img.src = 'media/img2.jpeg';
             } else if(num === 3) {
-                img.src = 'media/img3.jpg';
+                img.src = 'media/img3.jpeg';
             } else if(num === 4) {
                 img.src = 'media/96701-gomaconfettipopper.png';
             }
