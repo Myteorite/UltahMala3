@@ -83,10 +83,8 @@
 
         .inventory-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-top: 20px; width: 100%; }
         .item-slot { border: 2px solid #555; padding: 5px; background: #222; }
-        /* Aspect Ratio 1/1 memastikan gambar selalu kotak rapi di perangkat apapun */
         .item-slot img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; display: block; }
 
-        /* --- PENYESUAIAN KHUSUS LAYAR HP (ANDROID/IOS) --- */
         @media (max-width: 480px) {
             body { padding: 15px; }
             h1 { font-size: 20px; }
@@ -100,7 +98,6 @@
 </head>
 <body class="crt">
 
-    <!-- PAGE 1: TITLE SCREEN -->
     <div id="page1" class="page active">
         <h1>MALA'S BIRTHDAY<br>QUEST</h1>
         <br><br>
@@ -109,7 +106,6 @@
         </div>
     </div>
 
-    <!-- PAGE 2: THE ERROR / CONFESSION -->
     <div id="page2" class="page">
         <h2>LEVEL 1: SYSTEM ERROR</h2>
         <p>
@@ -120,7 +116,6 @@
         <button class="btn-next" onclick="goToPage(3)">LANJUT ▼</button>
     </div>
 
-    <!-- PAGE 3: DATA ANALYSIS -->
     <div id="page3" class="page">
         <h2>LEVEL 2: DATA ANALYSIS</h2>
         <p>
@@ -133,7 +128,6 @@
         <button class="btn-next" onclick="goToPage(4)">LANJUT ▼</button>
     </div>
 
-    <!-- PAGE 4: REBUILDING THE FUTURE -->
     <div id="page4" class="page">
         <h2>LEVEL 3: CITY PLANNING</h2>
         <p>
@@ -144,7 +138,6 @@
         <button class="btn-next" onclick="goToPage(5)">LANJUT ▼</button>
     </div>
 
-    <!-- PAGE 5: THE BOSS FIGHT -->
     <div id="page5" class="page">
         <h2>LEVEL 4: FINAL BOSS</h2>
         <p>
@@ -158,14 +151,12 @@
         </div>
     </div>
 
-    <!-- PAGE 6: VICTORY & GALLERY -->
     <div id="page6" class="page">
         <h2>QUEST COMPLETE!</h2>
         <div style="font-size: 40px; margin-bottom: 10px;">❤️</div>
         <div style="font-size: 10px; color: #2ecc71; margin-bottom: 15px;">EXP +10000 | STATUS: Dimaafkan</div>
         
         <div class="inventory-grid">
-            <!-- Ganti src di bawah dengan link foto kalian nanti -->
             <div class="item-slot"><img src="https://picsum.photos/300/300?random=1" alt="Memori 1"></div>
             <div class="item-slot"><img src="https://picsum.photos/300/300?random=2" alt="Memori 2"></div>
             <div class="item-slot"><img src="https://picsum.photos/300/300?random=3" alt="Memori 3"></div>
@@ -178,20 +169,17 @@
     </div>
 
     <script>
-        // Fungsi untuk pindah halaman
         function goToPage(pageNumber) {
             const pages = document.querySelectorAll('.page');
             pages.forEach(page => page.classList.remove('active'));
             document.getElementById('page' + pageNumber).classList.add('active');
         }
 
-        // Trik tombol lari di Halaman 5 (Sudah disesuaikan agar aman di HP)
         const btnNo = document.getElementById('btn-no');
         
         function moveButton(e) {
-            if(e) e.preventDefault(); // Mencegah tombol dipencet beneran
+            if(e) e.preventDefault(); 
             
-            // Jarak gerakan dibatasi maksimal 60px agar tidak keluar layar HP
             const maxMoveX = 60;
             const maxMoveY = 40;
             
@@ -201,7 +189,6 @@
             btnNo.style.transform = `translate(${x}px, ${y}px)`;
         }
 
-        // Berjalan baik di desktop (mouse) maupun HP (touch)
         btnNo.addEventListener('mouseover', moveButton);
         btnNo.addEventListener('touchstart', moveButton, {passive: false});
     </script>
