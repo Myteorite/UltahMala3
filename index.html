@@ -8,108 +8,75 @@
         @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
         body {
-            background-color: #050505;
-            color: #fff;
-            font-family: 'Press Start 2P', cursive;
-            margin: 0;
-            padding: 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            overflow: hidden;
-            text-align: center;
-            box-sizing: border-box;
+            background-color: #050505; color: #fff; font-family: 'Press Start 2P', cursive;
+            margin: 0; padding: 20px; display: flex; justify-content: center; align-items: center;
+            min-height: 100vh; overflow: hidden; text-align: center; box-sizing: border-box;
         }
 
         .crt::before {
-            content: " ";
-            display: block;
-            position: absolute;
-            top: 0; left: 0; bottom: 0; right: 0;
+            content: " "; display: block; position: absolute; top: 0; left: 0; bottom: 0; right: 0;
             background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%);
-            z-index: 10;
-            background-size: 100% 4px;
-            pointer-events: none;
+            z-index: 10; background-size: 100% 4px; pointer-events: none;
         }
 
-        .page {
-            display: none; 
-            width: 100%;
-            max-width: 600px;
-            z-index: 5;
-            position: relative;
-            animation: fadeIn 0.5s ease-in;
-            box-sizing: border-box;
-        }
-
+        .page { display: none; width: 100%; max-width: 600px; z-index: 5; position: relative; animation: fadeIn 0.5s ease-in; box-sizing: border-box; }
         .page.active { display: block; }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: scale(0.95); }
-            to { opacity: 1; transform: scale(1); }
-        }
+        @keyframes fadeIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
 
         h1 { color: #f1c40f; font-size: 24px; line-height: 1.5; text-shadow: 2px 2px #e74c3c; margin-top: 0; }
-        h2 { color: #3498db; font-size: 16px; margin-bottom: 20px; text-transform: uppercase;}
+        h2 { color: #3498db; font-size: 16px; margin-bottom: 20px; text-transform: uppercase; }
         
-        .box-text { font-size: 12px; line-height: 2; margin-bottom: 20px; text-align: left; background: #111; padding: 15px; border: 2px solid #fff; border-radius: 5px; box-sizing: border-box; min-height: 100px;}
+        .box-text { font-size: 12px; line-height: 2; margin-bottom: 20px; text-align: left; background: #111; padding: 15px; border: 2px solid #fff; border-radius: 5px; box-sizing: border-box; min-height: 80px; }
 
         .blink { animation: blinker 1s linear infinite; }
         @keyframes blinker { 50% { opacity: 0; } }
 
-        .btn-next {
-            background: #222;
-            color: #2ecc71;
-            border: 2px solid #2ecc71;
-            font-family: 'Press Start 2P', cursive;
-            font-size: 12px;
-            cursor: pointer;
-            margin-top: 20px;
-            padding: 15px;
-            width: 100%;
-            transition: 0.2s;
-        }
+        .btn-next { background: #222; color: #2ecc71; border: 2px solid #2ecc71; font-family: 'Press Start 2P', cursive; font-size: 12px; cursor: pointer; margin-top: 20px; padding: 15px; width: 100%; transition: 0.2s; }
         .btn-next:hover, .btn-next:active { background: #2ecc71; color: #000; }
         .btn-next:disabled { background: #111; color: #555; border-color: #555; cursor: not-allowed; }
 
-        /* Khusus Level 2 (Slider) */
+        /* Level 2: Loading Bar */
+        .progress-container { width: 100%; border: 2px solid #fff; padding: 2px; margin: 20px 0; box-sizing: border-box; }
+        .progress-fill { width: 0%; height: 20px; background-color: #3498db; }
+
+        /* Level 3: Slider */
         input[type=range] { width: 100%; margin: 20px 0; accent-color: #e74c3c; cursor: pointer; }
         .slider-val { color: #e74c3c; font-size: 18px; margin-top: 10px; display: block; animation: pulse 1s infinite; }
 
-        /* Khusus Level 3 (City Grid) */
+        /* Level 4: City Grid */
         .city-grid { display: flex; justify-content: space-between; gap: 10px; margin: 20px 0; }
-        .zone { 
-            flex: 1; aspect-ratio: 1/1; background: #333; border: 2px dashed #777; 
-            display: flex; flex-direction: column; justify-content: center; align-items: center; 
-            cursor: pointer; font-size: 8px; transition: 0.3s;
-        }
+        .zone { flex: 1; aspect-ratio: 1/1; background: #333; border: 2px dashed #777; display: flex; flex-direction: column; justify-content: center; align-items: center; cursor: pointer; font-size: 8px; transition: 0.3s; }
         .zone.built { background: #2ecc71; border: 2px solid #fff; color: #000; font-size: 24px; }
 
-        /* Khusus Level 4 (Input Password) */
-        input[type=text] {
-            width: 100%; padding: 15px; background: #000; border: 2px solid #f1c40f; color: #fff;
-            font-family: 'Press Start 2P', cursive; font-size: 12px; box-sizing: border-box; margin-bottom: 10px; text-align: center;
-        }
+        /* Level 5: Quiz */
+        .quiz-btn { background: #000; color: #fff; border: 2px solid #fff; padding: 12px; margin-bottom: 10px; font-family: 'Press Start 2P', cursive; font-size: 10px; cursor: pointer; width: 100%; text-align: left; transition: 0.2s;}
+        .quiz-btn:hover { background: #333; }
+        .quiz-btn.wrong { border-color: #e74c3c; color: #e74c3c; }
+        .quiz-btn.correct { background: #2ecc71; border-color: #2ecc71; color: #000; }
 
-        /* Khusus Level 5 (Action Menu) */
+        /* Level 6: Password */
+        input[type=text] { width: 100%; padding: 15px; background: #000; border: 2px solid #f1c40f; color: #fff; font-family: 'Press Start 2P', cursive; font-size: 12px; box-sizing: border-box; margin-bottom: 10px; text-align: center; }
+
+        /* Level 7: Gacha / Roulette */
+        .gacha-box { font-size: 14px; border: 4px dashed #f1c40f; padding: 20px; margin: 20px 0; color: #f1c40f; background: #222; }
+
+        /* Level 8: Action Menu */
         .action-menu { display: flex; justify-content: space-between; gap: 10px; position: relative; margin-top: 20px; width: 100%;}
         .btn-choice { background: #000; color: #fff; border: 2px solid #fff; padding: 15px 5px; font-family: 'Press Start 2P', cursive; font-size: 12px; cursor: pointer; flex: 1; text-align: center; }
         .btn-yes { border-color: #2ecc71; }
         .btn-yes:hover, .btn-yes:active { background: #2ecc71; color: #000; }
         .btn-no { border-color: #e74c3c; position: relative; z-index: 20; transition: transform 0.1s ease; }
 
-        /* Khusus Level 6 (Gallery) */
+        /* Level 9: Inventory */
         .inventory-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-top: 20px; width: 100%; }
         .item-slot { border: 2px solid #555; padding: 5px; background: #222; }
         .item-slot img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; display: block; }
 
         @media (max-width: 480px) {
-            body { padding: 15px; }
-            h1 { font-size: 20px; }
-            h2 { font-size: 14px; }
+            body { padding: 15px; } h1 { font-size: 20px; } h2 { font-size: 12px; }
             .box-text { font-size: 10px; line-height: 1.8; padding: 12px; }
-            .btn-next, .btn-choice, input[type=text] { font-size: 10px; }
+            .btn-next, .btn-choice, input[type=text], .quiz-btn, .gacha-box { font-size: 10px; }
         }
     </style>
 </head>
@@ -118,81 +85,120 @@
     <!-- PAGE 0: TITLE -->
     <div id="page0" class="page active">
         <h1>MALA'S BIRTHDAY<br>QUEST</h1>
+        <br>
+        <div style="font-size: 10px; color: #777;">Developed by: Azmy</div>
         <br><br>
         <div class="blink" style="color: #fff; font-size: 12px; cursor: pointer; padding: 20px;" onclick="goToPage(1)">
             [ PRESS START TO PLAY ]
         </div>
     </div>
 
-    <!-- PAGE 1: TERMINAL (AUTO TYPING) -->
+    <!-- PAGE 1: TERMINAL TYPING -->
     <div id="page1" class="page">
         <h2>LEVEL 1: SYSTEM ERROR</h2>
         <div class="box-text" id="terminal-text"></div>
         <button class="btn-next" id="btn-next-1" onclick="goToPage(2)" style="display: none;">LANJUT ▼</button>
     </div>
 
-    <!-- PAGE 2: HYPERPARAMETER TUNING (SLIDER) -->
+    <!-- PAGE 2: LOADING SCREEN -->
     <div id="page2" class="page">
-        <h2>LEVEL 2: FORECASTING MODEL</h2>
+        <h2>LEVEL 2: DIAGNOSTICS</h2>
         <div class="box-text">
-            > Mengeksekusi model *forecasting* tingkat lanjut...<br>
-            > Ditemukan *error*: Nilai parameter Cinta belum dikalibrasi.<br><br>
-            > TUGAS: Geser slider ke kanan untuk memaksimalkan parameter rasa sayangku ke kamu!
+            > Memindai kerusakan akibat lupa ulang tahun...<br>
+            > Menyusun ulang algoritma permintaan maaf...
+        </div>
+        <div class="progress-container">
+            <div class="progress-fill" id="loadingBar"></div>
+        </div>
+        <div id="loadingText" style="font-size: 10px; color: #3498db;">0%</div>
+        <button class="btn-next" id="btn-next-2" onclick="goToPage(3)" style="display: none;">REBOOT SYSTEM ▼</button>
+    </div>
+
+    <!-- PAGE 3: SLIDER -->
+    <div id="page3" class="page">
+        <h2>LEVEL 3: PARAMETER TUNING</h2>
+        <div class="box-text">
+            > Mengkalibrasi ulang model perasaanku ke kamu.<br>
+            > TUGAS: Geser slider untuk menentukan seberapa besar sayangku ke Mala!
         </div>
         <input type="range" min="0" max="1000" value="0" id="loveSlider" oninput="checkSlider()">
         <span class="slider-val" id="sliderVal">0%</span>
-        <button class="btn-next" id="btn-next-2" onclick="goToPage(3)" disabled>LOCK PARAMETER ▼</button>
+        <button class="btn-next" id="btn-next-3" onclick="goToPage(4)" disabled>LOCK PARAMETER ▼</button>
     </div>
 
-    <!-- PAGE 3: CITY ZONING (CLICK TO BUILD) -->
-    <div id="page3" class="page">
-        <h2>LEVEL 3: ZONING & PLANNING</h2>
+    <!-- PAGE 4: CITY ZONING -->
+    <div id="page4" class="page">
+        <h2>LEVEL 4: TATA KOTA MASA DEPAN</h2>
         <div class="box-text">
-            > Menyiapkan tata kota masa depan...<br>
-            > Untuk menebus kesalahan, aku sudah menyiapkan cetak biru (*blueprint*) khusus.<br><br>
-            > TUGAS: Klik 3 lahan kosong di bawah untuk membangun fasilitas khusus Mala!
+            > Membuka proyek perancangan kota...<br>
+            > TUGAS: Bangun 3 fasilitas krusial di pusat kota hatiku agar dimaafkan! Klik kotak lahan di bawah.
         </div>
         <div class="city-grid">
             <div class="zone" id="zone1" onclick="buildZone(1)">KLIK<br>LAHAN 1</div>
             <div class="zone" id="zone2" onclick="buildZone(2)">KLIK<br>LAHAN 2</div>
             <div class="zone" id="zone3" onclick="buildZone(3)">KLIK<br>LAHAN 3</div>
         </div>
-        <button class="btn-next" id="btn-next-3" onclick="goToPage(4)" disabled>SELESAIKAN PROYEK ▼</button>
+        <button class="btn-next" id="btn-next-4" onclick="goToPage(5)" disabled>SELESAIKAN PROYEK ▼</button>
     </div>
 
-    <!-- PAGE 4: SECURITY CHECK (INPUT TEXT) -->
-    <div id="page4" class="page">
-        <h2>LEVEL 4: SECURITY CHECK</h2>
+    <!-- PAGE 5: DATA SCIENCE QUIZ -->
+    <div id="page5" class="page">
+        <h2>LEVEL 5: ANALISIS FITUR</h2>
         <div class="box-text">
-            > Akses memori dibatasi.<br>
-            > Hanya administrator utama yang bisa membuka sistem ini.<br><br>
-            > TUGAS: Jawab pertanyaan keamanan berikut.<br>
-            "Siapa nama perempuan paling cantik dan paling penting buatku?"
+            > Mengevaluasi Model Machine Learning Kehidupan Azmy...<br>
+            > PERTANYAAN: Dari semua hal di bawah ini, variabel mana yang punya nilai kepentingan (SHAP Value) paling tinggi di hidupku?
+        </div>
+        <button class="quiz-btn" id="q1" onclick="checkQuiz(1)">A. Model Time Series ARIMAX</button>
+        <button class="quiz-btn" id="q2" onclick="checkQuiz(2)">B. IPK Cumlaude (3.82)</button>
+        <button class="quiz-btn" id="q3" onclick="checkQuiz(3)">C. Nirmala Putri Lestari (Mala)</button>
+        
+        <div id="quiz-msg" style="font-size: 10px; margin-top: 10px; min-height: 20px;"></div>
+        <button class="btn-next" id="btn-next-5" onclick="goToPage(6)" style="display:none;">BENAR! LANJUT ▼</button>
+    </div>
+
+    <!-- PAGE 6: PASSWORD -->
+    <div id="page6" class="page">
+        <h2>LEVEL 6: SECURITY CHECK</h2>
+        <div class="box-text">
+            > TUGAS: Verifikasi identitas administrator.<br>
+            > Masukkan nama perempuan tercantik yang lagi ulang tahun hari ini:
         </div>
         <input type="text" id="passwordInput" placeholder="Ketik namanya...">
-        <div id="pw-error" style="color: #e74c3c; font-size: 10px; display: none; margin-bottom: 10px;">Akses ditolak! Coba nama lengkap atau panggilannya.</div>
+        <div id="pw-error" style="color: #e74c3c; font-size: 10px; display: none; margin-bottom: 10px;">Akses ditolak! Coba nama panggilanmu.</div>
         <button class="btn-next" onclick="checkPassword()">VERIFIKASI ▼</button>
     </div>
 
-    <!-- PAGE 5: BOSS FIGHT (RUNNING BUTTON) -->
-    <div id="page5" class="page">
-        <h2>LEVEL 5: FINAL BOSS</h2>
+    <!-- PAGE 7: GACHA ROULETTE -->
+    <div id="page7" class="page">
+        <h2>LEVEL 7: REWARD SYSTEM</h2>
         <div class="box-text">
-            > Player 1 menyerahkan diri.<br><br>
-            > "Aku beneran minta maaf ya? Aku tau aku ceroboh sampai lupa tanggal sepenting ini. Tolong terima permintaanku dan *unlock* hadiah kenang-kenangan dari aku."<br><br>
-            > Apakah kamu mau memaafkan Player 1?
+            > Akses Diberikan!<br>
+            > Sebagai tanda maaf tambahan, silakan undi hadiah ulang tahunmu. Klik tombol Spin!
+        </div>
+        <div class="gacha-box" id="gacha-result">???</div>
+        <button class="btn-next" id="btn-spin" onclick="spinGacha()">SPIN HADIAH!</button>
+        <button class="btn-next" id="btn-next-7" onclick="goToPage(8)" style="display:none;">AMBIL HADIAH ▼</button>
+    </div>
+
+    <!-- PAGE 8: BOSS FIGHT -->
+    <div id="page8" class="page">
+        <h2>LEVEL 8: FINAL BOSS</h2>
+        <div class="box-text">
+            > Player 1 bersujud.<br><br>
+            > "Aku beneran nyesel udah lupa tanggal hari ini. Tolong maafin aku ya, sayang?"<br><br>
+            > Apakah kamu mau memaafkan Azmy?
         </div>
         <div class="action-menu">
-            <button class="btn-choice btn-yes" onclick="goToPage(6)">> MAAFIN</button>
+            <button class="btn-choice btn-yes" onclick="goToPage(9)">> MAAFIN</button>
             <button class="btn-choice btn-no" id="btn-no">> GAK MAU!</button>
         </div>
     </div>
 
-    <!-- PAGE 6: VICTORY & GALLERY -->
-    <div id="page6" class="page">
+    <!-- PAGE 9: VICTORY & GALLERY & WISHES -->
+    <div id="page9" class="page">
         <h2>QUEST COMPLETE!</h2>
         <div style="font-size: 40px; margin-bottom: 10px;">❤️</div>
-        <div style="font-size: 10px; color: #2ecc71; margin-bottom: 15px;">EXP +99999 | STATUS: Dimaafkan</div>
+        <div style="font-size: 10px; color: #2ecc71; margin-bottom: 15px;">STATUS: DIMAAFKAN OLEH MALA!</div>
         
         <div class="inventory-grid">
             <div class="item-slot"><img src="https://picsum.photos/300/300?random=1" alt="Memori 1"></div>
@@ -201,105 +207,157 @@
             <div class="item-slot"><img src="https://picsum.photos/300/300?random=4" alt="Memori 4"></div>
         </div>
         
-        <div class="box-text" style="color: #f1c40f; margin-top: 20px; border-color: #f1c40f; text-align: center;">
-            Selamat Ulang Tahun, Mala!<br>Terima kasih udah jadi partner terbaik. Siap-siap untuk *special event* pengganti akhir pekan ini ya!
+        <div class="box-text" style="color: #f1c40f; margin-top: 20px; border-color: #f1c40f; text-align: center; line-height: 1.6; font-size: 10px;">
+            <strong>🎉 SELAMAT ULANG TAHUN, NIRMALA PUTRI LESTARI! 🎉</strong><br><br>
+            Walaupun aku ceroboh dan sempet kelewatan, ketahuilah kalau kamu selalu jadi yang paling penting buatku.<br><br>
+            Terima kasih ya udah selalu sabar ngadepin aku, nemenin pusing ngerjain tugas, ngoding, dan selalu jadi <i>support system</i> terbaikku. Semoga di umur yang baru ini, kamu makin bahagia, makin bersinar, dan semua hal baik selalu ngikutin kamu.<br><br>
+            Maafin kebodohanku hari ini ya? Aku sayang banget sama kamu, lebih dari model statistik atau baris kode manapun yang pernah aku buat.<br><br>
+            I love you so much, Mala!<br>
+            - Azmy
         </div>
     </div>
 
     <script>
-        // CORE NAVIGATION
+        // NAVIGATION CORE
         function goToPage(pageNumber) {
-            const pages = document.querySelectorAll('.page');
-            pages.forEach(page => page.classList.remove('active'));
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
             document.getElementById('page' + pageNumber).classList.add('active');
 
-            // Trigger fitur khusus saat halaman dibuka
             if(pageNumber === 1) startTyping();
+            if(pageNumber === 2) startLoading();
         }
 
-        // LEVEL 1: TYPING EFFECT
-        const textToType = "> SYSTEM WARNING...\n> Memori utama mengalami glitch.\n> Tanggal terpenting terlewat: Ulang Tahun Mala.\n> Status: Player 1 (Azmy) sangat panik.\n> Menginisiasi protokol permintaan maaf...";
+        // LEVEL 1: TYPING
+        const txt = "> ERROR LOG: 404 Date Not Found.\n> Analisis: Azmy terlalu fokus sampai melewatkan hari ultah Mala.\n> Solusi: Meminta maaf secara tulus.\n> Menginisiasi protokol penebusan dosa...";
         let i = 0;
         function startTyping() {
-            if (i < textToType.length) {
-                let char = textToType.charAt(i);
-                if(char === '\n') {
-                    document.getElementById("terminal-text").innerHTML += "<br>";
-                } else {
-                    document.getElementById("terminal-text").innerHTML += char;
-                }
+            if (i < txt.length) {
+                let char = txt.charAt(i);
+                document.getElementById("terminal-text").innerHTML += (char === '\n') ? "<br>" : char;
                 i++;
-                setTimeout(startTyping, 50); // Kecepatan ngetik (ms)
+                setTimeout(startTyping, 40);
             } else {
                 document.getElementById("btn-next-1").style.display = "block";
             }
         }
 
-        // LEVEL 2: SLIDER
+        // LEVEL 2: LOADING BAR
+        function startLoading() {
+            let width = 0;
+            let bar = document.getElementById("loadingBar");
+            let text = document.getElementById("loadingText");
+            let interval = setInterval(function() {
+                if (width >= 100) {
+                    clearInterval(interval);
+                    text.innerHTML = "SYSTEM READY!";
+                    text.style.color = "#2ecc71";
+                    document.getElementById("btn-next-2").style.display = "block";
+                } else {
+                    width += Math.floor(Math.random() * 10) + 1; // Random increment
+                    if(width > 100) width = 100;
+                    bar.style.width = width + '%';
+                    text.innerHTML = width * 1 + '%';
+                }
+            }, 300);
+        }
+
+        // LEVEL 3: SLIDER
         function checkSlider() {
-            const slider = document.getElementById("loveSlider");
-            const valDisplay = document.getElementById("sliderVal");
-            const btn = document.getElementById("btn-next-2");
-            
-            valDisplay.innerText = slider.value + "%";
-            
+            let slider = document.getElementById("loveSlider");
+            let display = document.getElementById("sliderVal");
+            let btn = document.getElementById("btn-next-3");
+            display.innerText = slider.value + "%";
             if (slider.value >= 1000) {
-                valDisplay.innerText = "OVER 1000% !!!";
-                valDisplay.style.color = "#2ecc71";
+                display.innerText = "OVER 1000% !!!";
+                display.style.color = "#2ecc71";
                 btn.disabled = false;
             } else {
-                valDisplay.style.color = "#e74c3c";
+                display.style.color = "#e74c3c";
                 btn.disabled = true;
             }
         }
 
-        // LEVEL 3: CITY ZONING
-        let zonesBuilt = [false, false, false];
-        const buildings = ["🏰", "🎡", "🏡"];
-        const bNames = ["Istana Mala", "Taman Mala", "Rumah Kita"];
-
+        // LEVEL 4: CITY ZONING
+        let zones = [false, false, false];
+        const buildings = ["🏰", "🎡", "☕"];
+        const bNames = ["Istana Mala", "Taman Hiburan", "Cafe Kencan"];
         function buildZone(id) {
-            const zone = document.getElementById("zone" + id);
-            if (!zonesBuilt[id-1]) {
-                zonesBuilt[id-1] = true;
-                zone.classList.add("built");
-                zone.innerHTML = buildings[id-1] + "<br><span style='font-size:10px'>" + bNames[id-1] + "</span>";
-                checkZones();
+            let z = document.getElementById("zone" + id);
+            if (!zones[id-1]) {
+                zones[id-1] = true;
+                z.classList.add("built");
+                z.innerHTML = buildings[id-1] + "<br><span style='font-size:8px'>" + bNames[id-1] + "</span>";
+                if(zones[0] && zones[1] && zones[2]) document.getElementById("btn-next-4").disabled = false;
             }
         }
 
-        function checkZones() {
-            if (zonesBuilt[0] && zonesBuilt[1] && zonesBuilt[2]) {
-                document.getElementById("btn-next-3").disabled = false;
+        // LEVEL 5: QUIZ
+        function checkQuiz(ans) {
+            let msg = document.getElementById("quiz-msg");
+            document.querySelectorAll('.quiz-btn').forEach(btn => btn.classList.remove('wrong'));
+            if(ans === 1) {
+                document.getElementById("q1").classList.add('wrong');
+                msg.innerHTML = "Salah! Skripsi emang pusing, tapi kamu tetep nomor satu.";
+                msg.style.color = "#e74c3c";
+            } else if(ans === 2) {
+                document.getElementById("q2").classList.add('wrong');
+                msg.innerHTML = "Salah! IPK tinggi percuma kalau nggak ada kamu.";
+                msg.style.color = "#e74c3c";
+            } else if(ans === 3) {
+                document.getElementById("q3").classList.add('correct');
+                msg.innerHTML = "Tepat Sekali! Model apapun kalah penting dari Mala.";
+                msg.style.color = "#2ecc71";
+                document.getElementById("btn-next-5").style.display = "block";
+                
+                document.getElementById("q1").disabled = true;
+                document.getElementById("q2").disabled = true;
             }
         }
 
-        // LEVEL 4: PASSWORD
+        // LEVEL 6: PASSWORD
         function checkPassword() {
-            const input = document.getElementById("passwordInput").value.toLowerCase();
-            const errorMsg = document.getElementById("pw-error");
-            
-            // Password bisa Mala atau Nirmala
-            if (input.includes("mala") || input.includes("nirmala")) {
-                errorMsg.style.display = "none";
-                goToPage(5);
+            let pw = document.getElementById("passwordInput").value.toLowerCase();
+            let err = document.getElementById("pw-error");
+            if (pw.includes("mala") || pw.includes("nirmala")) {
+                err.style.display = "none";
+                goToPage(7);
             } else {
-                errorMsg.style.display = "block";
+                err.style.display = "block";
             }
         }
 
-        // LEVEL 5: BOSS FIGHT (RUNNING BUTTON)
+        // LEVEL 7: GACHA
+        let prizes = ["Kucing Lucu", "Skripsi Kelar Besok", "Jalan-jalan ke Mars", "Kencan Spesial + Ditraktir Full!"];
+        function spinGacha() {
+            let box = document.getElementById("gacha-result");
+            let btnSpin = document.getElementById("btn-spin");
+            btnSpin.style.display = "none"; 
+            
+            let time = 0;
+            let spinInterval = setInterval(() => {
+                box.innerHTML = prizes[Math.floor(Math.random() * prizes.length)];
+                time += 100;
+                if(time > 3000) { 
+                    clearInterval(spinInterval);
+                    box.innerHTML = "🎉 Kencan Spesial + Ditraktir Full! 🎉";
+                    box.style.color = "#2ecc71";
+                    box.style.borderColor = "#2ecc71";
+                    document.getElementById("btn-next-7").style.display = "block";
+                }
+            }, 100);
+        }
+
+        // LEVEL 8: RUNNING BOSS
         const btnNo = document.getElementById('btn-no');
-        function moveButton(e) {
+        function moveBtn(e) {
             if(e) e.preventDefault(); 
-            const maxMoveX = 60;
-            const maxMoveY = 40;
-            const x = Math.floor(Math.random() * (maxMoveX * 2)) - maxMoveX; 
-            const y = Math.floor(Math.random() * (maxMoveY * 2)) - maxMoveY;  
+            let x = Math.floor(Math.random() * 120) - 60; 
+            let y = Math.floor(Math.random() * 80) - 40;  
             btnNo.style.transform = `translate(${x}px, ${y}px)`;
         }
-        btnNo.addEventListener('mouseover', moveButton);
-        btnNo.addEventListener('touchstart', moveButton, {passive: false});
+        btnNo.addEventListener('mouseover', moveBtn);
+        btnNo.addEventListener('touchstart', moveBtn, {passive: false});
+
     </script>
 </body>
 </html>
