@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Misi: Mala's Birthday Quest</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
@@ -19,6 +19,7 @@
             min-height: 100vh;
             overflow: hidden;
             text-align: center;
+            box-sizing: border-box;
         }
 
         .crt::before {
@@ -33,16 +34,17 @@
         }
 
         .page {
-            display: none; /* Sembunyikan semua halaman secara default */
+            display: none; 
             width: 100%;
             max-width: 600px;
             z-index: 5;
             position: relative;
             animation: fadeIn 0.5s ease-in;
+            box-sizing: border-box;
         }
 
         .page.active {
-            display: block; /* Tampilkan hanya halaman yang aktif */
+            display: block; 
         }
 
         @keyframes fadeIn {
@@ -50,10 +52,10 @@
             to { opacity: 1; transform: scale(1); }
         }
 
-        h1 { color: #f1c40f; font-size: 24px; line-height: 1.5; text-shadow: 2px 2px #e74c3c; }
+        h1 { color: #f1c40f; font-size: 24px; line-height: 1.5; text-shadow: 2px 2px #e74c3c; margin-top: 0; }
         h2 { color: #3498db; font-size: 16px; margin-bottom: 20px; }
         
-        p { font-size: 12px; line-height: 2; margin-bottom: 20px; text-align: left; background: #111; padding: 15px; border: 2px solid #fff; border-radius: 5px; }
+        p { font-size: 12px; line-height: 2; margin-bottom: 20px; text-align: left; background: #111; padding: 15px; border: 2px solid #fff; border-radius: 5px; box-sizing: border-box;}
 
         .blink { animation: blinker 1s linear infinite; }
         @keyframes blinker { 50% { opacity: 0; } }
@@ -66,20 +68,34 @@
             font-size: 14px;
             cursor: pointer;
             margin-top: 20px;
+            padding: 10px;
+            width: 100%;
         }
-        .btn-next:hover { color: #fff; }
+        
+        .btn-next:hover, .btn-next:active { color: #fff; }
 
-        /* Khusus Halaman 5 (Pilihan) */
-        .action-menu { display: flex; justify-content: space-between; gap: 10px; position: relative; margin-top: 20px; }
-        .btn-choice { background: #000; color: #fff; border: 2px solid #fff; padding: 15px; font-family: 'Press Start 2P', cursive; font-size: 12px; cursor: pointer; width: 48%; }
+        .action-menu { display: flex; justify-content: space-between; gap: 10px; position: relative; margin-top: 20px; width: 100%;}
+        .btn-choice { background: #000; color: #fff; border: 2px solid #fff; padding: 15px 5px; font-family: 'Press Start 2P', cursive; font-size: 12px; cursor: pointer; flex: 1; text-align: center; }
+        
         .btn-yes { border-color: #2ecc71; }
-        .btn-yes:hover { background: #2ecc71; color: #000; }
-        .btn-no { border-color: #e74c3c; position: relative; }
+        .btn-yes:hover, .btn-yes:active { background: #2ecc71; color: #000; }
+        .btn-no { border-color: #e74c3c; position: relative; z-index: 20; transition: transform 0.1s ease; }
 
-        /* Khusus Halaman 6 (Galeri) */
-        .inventory-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-top: 20px; }
+        .inventory-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-top: 20px; width: 100%; }
         .item-slot { border: 2px solid #555; padding: 5px; background: #222; }
-        .item-slot img { width: 100%; height: 120px; object-fit: cover; }
+        /* Aspect Ratio 1/1 memastikan gambar selalu kotak rapi di perangkat apapun */
+        .item-slot img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; display: block; }
+
+        /* --- PENYESUAIAN KHUSUS LAYAR HP (ANDROID/IOS) --- */
+        @media (max-width: 480px) {
+            body { padding: 15px; }
+            h1 { font-size: 20px; }
+            h2 { font-size: 14px; }
+            p { font-size: 10px; line-height: 1.8; padding: 12px; }
+            .btn-next { font-size: 12px; }
+            .btn-choice { font-size: 10px; padding: 12px 5px; }
+            .inventory-grid { gap: 10px; }
+        }
     </style>
 </head>
 <body class="crt">
@@ -88,7 +104,7 @@
     <div id="page1" class="page active">
         <h1>MALA'S BIRTHDAY<br>QUEST</h1>
         <br><br>
-        <div class="blink" style="color: #fff; font-size: 12px; cursor: pointer;" onclick="goToPage(2)">
+        <div class="blink" style="color: #fff; font-size: 12px; cursor: pointer; padding: 20px;" onclick="goToPage(2)">
             [ PRESS START TO PLAY ]
         </div>
     </div>
@@ -128,7 +144,7 @@
         <button class="btn-next" onclick="goToPage(5)">LANJUT ▼</button>
     </div>
 
-    <!-- PAGE 5: THE BOSS FIGHT (RUNNING BUTTON) -->
+    <!-- PAGE 5: THE BOSS FIGHT -->
     <div id="page5" class="page">
         <h2>LEVEL 4: FINAL BOSS</h2>
         <p>
@@ -146,17 +162,17 @@
     <div id="page6" class="page">
         <h2>QUEST COMPLETE!</h2>
         <div style="font-size: 40px; margin-bottom: 10px;">❤️</div>
-        <div style="font-size: 10px; color: #2ecc71;">EXP +10000 | STATUS: Dimaafkan</div>
+        <div style="font-size: 10px; color: #2ecc71; margin-bottom: 15px;">EXP +10000 | STATUS: Dimaafkan</div>
         
         <div class="inventory-grid">
             <!-- Ganti src di bawah dengan link foto kalian nanti -->
-            <div class="item-slot"><img src="https://picsum.photos/200/200?random=1" alt="Memori 1"></div>
-            <div class="item-slot"><img src="https://picsum.photos/200/200?random=2" alt="Memori 2"></div>
-            <div class="item-slot"><img src="https://picsum.photos/200/200?random=3" alt="Memori 3"></div>
-            <div class="item-slot"><img src="https://picsum.photos/200/200?random=4" alt="Memori 4"></div>
+            <div class="item-slot"><img src="https://picsum.photos/300/300?random=1" alt="Memori 1"></div>
+            <div class="item-slot"><img src="https://picsum.photos/300/300?random=2" alt="Memori 2"></div>
+            <div class="item-slot"><img src="https://picsum.photos/300/300?random=3" alt="Memori 3"></div>
+            <div class="item-slot"><img src="https://picsum.photos/300/300?random=4" alt="Memori 4"></div>
         </div>
-        <br>
-        <div style="font-size: 10px; line-height: 1.5; color: #f1c40f;">
+        
+        <div style="font-size: 10px; line-height: 1.5; color: #f1c40f; margin-top: 20px; background: #111; padding: 10px; border: 1px dashed #f1c40f;">
             Terima kasih sayang!<br>Siap-siap untuk *special event* akhir pekan ini ya!
         </div>
     </div>
@@ -164,180 +180,30 @@
     <script>
         // Fungsi untuk pindah halaman
         function goToPage(pageNumber) {
-            // Sembunyikan semua halaman
             const pages = document.querySelectorAll('.page');
             pages.forEach(page => page.classList.remove('active'));
-
-            // Tampilkan halaman yang dituju
             document.getElementById('page' + pageNumber).classList.add('active');
         }
 
-        // Trik tombol lari di Halaman 5
+        // Trik tombol lari di Halaman 5 (Sudah disesuaikan agar aman di HP)
         const btnNo = document.getElementById('btn-no');
         
-        function moveButton() {
-            const x = Math.floor(Math.random() * 150) - 75; 
-            const y = Math.floor(Math.random() * 100) - 50;  
+        function moveButton(e) {
+            if(e) e.preventDefault(); // Mencegah tombol dipencet beneran
+            
+            // Jarak gerakan dibatasi maksimal 60px agar tidak keluar layar HP
+            const maxMoveX = 60;
+            const maxMoveY = 40;
+            
+            const x = Math.floor(Math.random() * (maxMoveX * 2)) - maxMoveX; 
+            const y = Math.floor(Math.random() * (maxMoveY * 2)) - maxMoveY;  
+            
             btnNo.style.transform = `translate(${x}px, ${y}px)`;
         }
 
+        // Berjalan baik di desktop (mouse) maupun HP (touch)
         btnNo.addEventListener('mouseover', moveButton);
-        btnNo.addEventListener('touchstart', function(e) {
-            e.preventDefault(); 
-            moveButton();
-        });
+        btnNo.addEventListener('touchstart', moveButton, {passive: false});
     </script>
-</body>
-</html>        .item-slot img {
-            width: 100%;
-            height: 120px;
-            object-fit: cover;
-            image-rendering: pixelated; /* Membuat gambar terasa sedikit retro */
-        }
-
-        /* Tombol Pilihan */
-        .action-menu {
-            display: flex;
-            justify-content: space-between;
-            gap: 10px;
-            position: relative;
-        }
-
-        .btn {
-            background-color: #000;
-            color: #fff;
-            border: 2px solid #fff;
-            padding: 15px;
-            font-family: 'Press Start 2P', cursive;
-            font-size: 12px;
-            cursor: pointer;
-            width: 48%;
-            text-transform: uppercase;
-        }
-
-        .btn:hover {
-            background-color: #fff;
-            color: #000;
-        }
-
-        .btn-yes {
-            border-color: #2ecc71;
-        }
-
-        .btn-yes:hover {
-            background-color: #2ecc71;
-        }
-
-        .btn-no {
-            border-color: #e74c3c;
-            position: relative; /* Diperlukan agar tombol bisa "kabur" */
-        }
-
-        /* Layar Sukses (Hidden by default) */
-        #victory-screen {
-            display: none;
-            text-align: center;
-        }
-
-        .victory-title {
-            color: #f1c40f;
-            font-size: 24px;
-            margin-bottom: 20px;
-            animation: pulse 1s infinite alternate;
-        }
-
-        @keyframes pulse {
-            from { transform: scale(1); }
-            to { transform: scale(1.1); }
-        }
-
-        .pixel-heart {
-            font-size: 50px;
-            color: #e74c3c;
-            margin-bottom: 20px;
-        }
-    </style>
-</head>
-<body class="crt">
-
-    <div class="game-container" id="main-screen">
-        <div class="header">LEVEL 99:<br>MALA'S BIRTHDAY</div>
-
-        <div class="rpg-box">
-            <div class="character-name">[PLAYER 1]</div>
-            <div>
-                "Sistem mendeteksi kesalahan fatal! Aku kelewatan hari yang paling penting... ulang tahunmu. <br><br>
-                Maafin aku ya, Mala? Aku tau aku ceroboh, tapi kamu selalu jadi MVP di hidupku. Sebagai tebusan, aku udah kumpulin memori berharga kita."
-            </div>
-        </div>
-
-        <div class="inventory-title">--- UNLOCKED MEMORIES ---</div>
-        
-        <div class="inventory-grid">
-            <div class="item-slot">
-                <img src="https://picsum.photos/200/200?random=1" alt="Item 1">
-            </div>
-            <div class="item-slot">
-                <img src="https://picsum.photos/200/200?random=2" alt="Item 2">
-            </div>
-            <div class="item-slot">
-                <img src="https://picsum.photos/200/200?random=3" alt="Item 3">
-            </div>
-            <div class="item-slot">
-                <img src="https://picsum.photos/200/200?random=4" alt="Item 4">
-            </div>
-        </div>
-
-        <div class="rpg-box">
-            <div>Apakah kamu mau memaafkan Player 1?</div>
-        </div>
-
-        <div class="action-menu">
-            <button class="btn btn-yes" onclick="levelComplete()">> MAAFIN</button>
-            <button class="btn btn-no" id="btn-no">> GAK MAU!</button>
-        </div>
-    </div>
-
-    <div class="game-container" id="victory-screen">
-        <div class="victory-title">QUEST COMPLETE!</div>
-        <div class="pixel-heart">❤️</div>
-        <div class="rpg-box">
-            <div class="character-name">[SYSTEM]</div>
-            <div>
-                Selamat! Mala telah memaafkanmu. <br><br>
-                EXP +10000<br>
-                Hadiah: Kencan Spesial Akhir Pekan Ini!<br><br>
-                "Terima kasih sayang, I love you!"
-            </div>
-        </div>
-    </div>
-
-    <script>
-        // Fungsi jika tombol "MAAFIN" ditekan
-        function levelComplete() {
-            document.getElementById('main-screen').style.display = 'none';
-            document.getElementById('victory-screen').style.display = 'block';
-        }
-
-        // Trik Tombol "GAK MAU!" yang selalu menghindar/kabur
-        const btnNo = document.getElementById('btn-no');
-        
-        btnNo.addEventListener('mouseover', function() {
-            // Menghasilkan posisi acak untuk tombol menghindar
-            const x = Math.floor(Math.random() * 150) - 75; // Gerak ke kiri/kanan
-            const y = Math.floor(Math.random() * 100) - 50;  // Gerak ke atas/bawah
-            
-            this.style.transform = `translate(${x}px, ${y}px)`;
-        });
-
-        // Untuk layar HP (touch screen)
-        btnNo.addEventListener('touchstart', function(e) {
-            e.preventDefault(); // Mencegah tombol dipencet di HP
-            const x = Math.floor(Math.random() * 150) - 75;
-            const y = Math.floor(Math.random() * 100) - 50;
-            this.style.transform = `translate(${x}px, ${y}px)`;
-        });
-    </script>
-
 </body>
 </html>
