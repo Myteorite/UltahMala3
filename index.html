@@ -20,9 +20,8 @@
         }
 
         .page { display: none; width: 100%; max-width: 600px; z-index: 5; position: relative; animation: fadeIn 0.5s ease-in; box-sizing: border-box; }
-        .page.active { display: block; overflow-y: auto; max-height: 90vh; /* Agar bisa discroll di HP kalau kontennya panjang */ padding-bottom: 20px; }
+        .page.active { display: block; overflow-y: auto; max-height: 90vh; padding-bottom: 20px; }
 
-        /* Sembunyikan scrollbar tapi tetap bisa discroll */
         .page::-webkit-scrollbar { display: none; }
         
         @keyframes fadeIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
@@ -39,24 +38,13 @@
         .btn-next:hover, .btn-next:active { background: #2ecc71; color: #000; }
         .btn-next:disabled { background: #111; color: #555; border-color: #555; cursor: not-allowed; }
 
-        /* Level 2: Loading Bar */
+        /* General Progress Bar */
         .progress-container { width: 100%; border: 2px solid #fff; padding: 2px; margin: 20px 0; box-sizing: border-box; }
-        .progress-fill { width: 0%; height: 20px; background-color: #3498db; }
+        .progress-fill { width: 0%; height: 20px; background-color: #3498db; transition: width 0.2s; }
 
         /* Level 3: Slider */
         input[type=range] { width: 100%; margin: 20px 0; accent-color: #e74c3c; cursor: pointer; }
         .slider-val { color: #e74c3c; font-size: 18px; margin-top: 10px; display: block; animation: pulse 1s infinite; }
-
-        /* Level 4: Janji Box */
-        .promise-grid { display: flex; justify-content: space-between; gap: 10px; margin: 20px 0; }
-        .promise-box { flex: 1; aspect-ratio: 1/1; background: #333; border: 2px dashed #e74c3c; display: flex; flex-direction: column; justify-content: center; align-items: center; cursor: pointer; font-size: 8px; transition: 0.3s; padding: 5px;}
-        .promise-box.unlocked { background: #2ecc71; border: 2px solid #fff; color: #000; font-size: 24px; }
-
-        /* Level 5: Quiz */
-        .quiz-btn { background: #000; color: #fff; border: 2px solid #fff; padding: 12px; margin-bottom: 10px; font-family: 'Press Start 2P', cursive; font-size: 10px; cursor: pointer; width: 100%; text-align: left; transition: 0.2s; line-height: 1.5;}
-        .quiz-btn:hover { background: #333; }
-        .quiz-btn.wrong { border-color: #e74c3c; color: #e74c3c; }
-        .quiz-btn.correct { background: #2ecc71; border-color: #2ecc71; color: #000; }
 
         /* Level 6: Password */
         input[type=text] { width: 100%; padding: 15px; background: #000; border: 2px solid #f1c40f; color: #fff; font-family: 'Press Start 2P', cursive; font-size: 12px; box-sizing: border-box; margin-bottom: 10px; text-align: center; }
@@ -88,7 +76,7 @@
         @media (max-width: 480px) {
             body { padding: 15px; } h1 { font-size: 20px; } h2 { font-size: 12px; }
             .box-text { font-size: 10px; line-height: 1.8; padding: 12px; }
-            .btn-next, .btn-choice, input[type=text], .quiz-btn, .gacha-box { font-size: 10px; }
+            .btn-next, .btn-choice, input[type=text], .gacha-box { font-size: 10px; }
             .window-content { font-size: 11px; }
         }
     </style>
@@ -139,34 +127,37 @@
         <button class="btn-next" id="btn-next-3" onclick="goToPage(4)" disabled>LOCK PARAMETER ▼</button>
     </div>
 
-    <!-- PAGE 4: PROTOKOL PENEBUSAN DOSA -->
+    <!-- PAGE 4: UJI HIPOTESIS (STATISTIK) -->
     <div id="page4" class="page">
-        <h2>LEVEL 4: PROTOKOL PENEBUSAN</h2>
+        <h2>LEVEL 4: UJI HIPOTESIS STATISTIKA</h2>
         <div class="box-text">
-            > Inisiasi janji perbaikan diri.<br>
-            > TUGAS: Klik 3 kotak di bawah ini untuk membuka segel janji suci Azmy biar dimaafkan!
+            > Menjalankan uji signifikansi perasaan Azmy...<br><br>
+            <strong>H0:</strong> Azmy lupa ultah karena nggak sayang.<br>
+            <strong>H1:</strong> Azmy murni khilaf tapi sayangnya tetap tak terhingga.<br><br>
+            > TUGAS: Jalankan algoritma untuk mencari nilai p-value!
         </div>
-        <div class="promise-grid">
-            <div class="promise-box" id="promise1" onclick="unlockPromise(1)">KLIK UNTUK<br>JANJI 1</div>
-            <div class="promise-box" id="promise2" onclick="unlockPromise(2)">KLIK UNTUK<br>JANJI 2</div>
-            <div class="promise-box" id="promise3" onclick="unlockPromise(3)">KLIK UNTUK<br>JANJI 3</div>
+        <button class="btn-next" id="btn-calc" onclick="calcPValue()" style="background: #3498db; border-color: #3498db; color: #fff; margin-top: 0;">RUN ANALYSIS</button>
+        <div id="p-value-result" style="display: none; margin-top: 15px; color: #2ecc71; font-size: 10px; line-height: 1.8; border: 1px dashed #2ecc71; padding: 10px; text-align: left;">
+            [ RESULT ]<br>
+            Hitung p-value = 0.0000001 < alpha (0.05).<br><br>
+            KESIMPULAN: H0 DITOLAK!<br>Azmy terbukti secara statistik sangat menyayangi Mala tanpa ada keraguan.
         </div>
-        <button class="btn-next" id="btn-next-4" onclick="goToPage(5)" disabled>TERIMA JANJI ▼</button>
+        <button class="btn-next" id="btn-next-4" onclick="goToPage(5)" style="display:none;">LANJUT ▼</button>
     </div>
 
-    <!-- PAGE 5: ANALISIS KESALAHAN -->
+    <!-- PAGE 5: TRAINING MODEL MACHINE LEARNING (SPAM CLICK) -->
     <div id="page5" class="page">
-        <h2>LEVEL 5: ANALISIS KESALAHAN</h2>
+        <h2>LEVEL 5: TRAINING MODEL M.L.</h2>
         <div class="box-text">
-            > Menjalankan investigasi penyebab masalah.<br>
-            > PERTANYAAN: Kenapa sistem otak Azmy bisa sampai error dan melewatkan tanggal ulang tahun Mala?
+            > Agar kelalaian ini tidak terulang, kita harus melatih <i>Machine Learning Model</i> khusus Pengingat Ulang Tahun.<br><br>
+            > TUGAS: Bantu Azmy melatih model ini dengan memencet tombol di bawah berkali-kali sampai akurasi mencapai 100%!
         </div>
-        <button class="quiz-btn" id="q1" onclick="checkQuiz(1)">A. Emang sengaja nyari gara-gara.</button>
-        <button class="quiz-btn" id="q2" onclick="checkQuiz(2)">B. Terlalu sibuk mikirin hal lain dan ngabaiin Mala.</button>
-        <button class="quiz-btn" id="q3" onclick="checkQuiz(3)">C. Murni karena sifat ceroboh, bodoh, dan sekarang nyesel banget.</button>
-        
-        <div id="quiz-msg" style="font-size: 10px; margin-top: 10px; min-height: 20px;"></div>
-        <button class="btn-next" id="btn-next-5" onclick="goToPage(6)" style="display:none;">LANJUT ▼</button>
+        <div class="progress-container">
+            <div class="progress-fill" id="trainBar" style="background-color: #e74c3c;"></div>
+        </div>
+        <div id="trainText" style="font-size: 10px; color: #e74c3c; margin-bottom: 15px;">Akurasi: 0%</div>
+        <button class="btn-next" id="btn-train" onclick="trainModel()" style="background: #f1c40f; border-color: #f1c40f; color: #000; margin-top: 0;">KLIK UNTUK TRAINING!</button>
+        <button class="btn-next" id="btn-next-5" onclick="goToPage(6)" style="display:none;">MODEL SEMPURNA! LANJUT ▼</button>
     </div>
 
     <!-- PAGE 6: PASSWORD -->
@@ -304,42 +295,31 @@
             }
         }
 
-        // LEVEL 4: PROTOKOL PENEBUSAN DOSA (JANJI)
-        let promises = [false, false, false];
-        const pIcons = ["⏰", "🗓️", "💖"];
-        const pText = ["Bakal Pasang Alarm", "Catat di Kalender", "Sayang Mala Selalu"];
-        function unlockPromise(id) {
-            let p = document.getElementById("promise" + id);
-            if (!promises[id-1]) {
-                promises[id-1] = true;
-                p.classList.add("unlocked");
-                p.innerHTML = pIcons[id-1] + "<br><span style='font-size:8px; line-height: 1.2; padding-top: 5px;'>" + pText[id-1] + "</span>";
-                if(promises[0] && promises[1] && promises[2]) {
-                    document.getElementById("btn-next-4").disabled = false;
-                }
-            }
+        // LEVEL 4: UJI HIPOTESIS
+        function calcPValue() {
+            document.getElementById("btn-calc").style.display = "none";
+            document.getElementById("p-value-result").style.display = "block";
+            document.getElementById("btn-next-4").style.display = "block";
         }
 
-        // LEVEL 5: QUIZ MINTA MAAF
-        function checkQuiz(ans) {
-            let msg = document.getElementById("quiz-msg");
-            document.querySelectorAll('.quiz-btn').forEach(btn => btn.classList.remove('wrong'));
-            if(ans === 1) {
-                document.getElementById("q1").classList.add('wrong');
-                msg.innerHTML = "Astaga enggak! Aku nggak sejahat itu, beneran ini murni khilaf! T_T";
-                msg.style.color = "#e74c3c";
-            } else if(ans === 2) {
-                document.getElementById("q2").classList.add('wrong');
-                msg.innerHTML = "Alasan! Nggak ada alasan sibuk buat prioritas utama. Tolong maafin aku.";
-                msg.style.color = "#e74c3c";
-            } else if(ans === 3) {
-                document.getElementById("q3").classList.add('correct');
-                msg.innerHTML = "Benar! Aku ceroboh banget dan beneran nyesel. Maafin kebodohanku ya? 🥺";
-                msg.style.color = "#2ecc71";
+        // LEVEL 5: TRAINING MODEL MACHINE LEARNING (SPAM CLICK)
+        let accuracy = 0;
+        function trainModel() {
+            accuracy += 10; // Tambah 10% setiap klik
+            if(accuracy > 100) accuracy = 100;
+            
+            let bar = document.getElementById("trainBar");
+            let text = document.getElementById("trainText");
+            
+            bar.style.width = accuracy + '%';
+            text.innerHTML = "Akurasi: " + accuracy + "%";
+            
+            if(accuracy >= 100) {
+                bar.style.backgroundColor = "#2ecc71";
+                text.style.color = "#2ecc71";
+                text.innerHTML = "Akurasi: 100% (Model Siap Deployment!)";
+                document.getElementById("btn-train").style.display = "none";
                 document.getElementById("btn-next-5").style.display = "block";
-                
-                document.getElementById("q1").disabled = true;
-                document.getElementById("q2").disabled = true;
             }
         }
 
@@ -403,7 +383,6 @@
             } else if(num === 3) {
                 img.src = 'https://picsum.photos/400/400?random=3';
             } else if(num === 4) {
-                // Gambar Kejutan (GIF Peluk/Senang)
                 img.src = 'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExcWc1bWc1bWc1bWc1bWc1bWc1bWc1bWc1bWc1bWc1bWc1bWc1bWc1bWc1bWc1bWc1bWc1bWc1/10UeedrT5MIfPG/giphy.gif';
             }
         }
