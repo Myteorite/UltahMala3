@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Untuk Mala... Maafin Aku 🥺</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Quicksand:wght@500;700&display=swap');
+
+        /* Animasi Latar Belakang Gradien */
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        body {
+            background: linear-gradient(-45deg, #ff9a9e, #fecfef, #a1c4fd, #c2e9fb);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            font-family: 'Quicksand', sans-serif;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 30px;
+            max-width: 600px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+            animation: floatUp 1s ease-out;
+        }
+
+        @keyframes floatUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        h1 {
+            font-family: 'Fredoka One', cursive;
+            color: #ff6b81;
+            font-size: 28px;
+            margin-bottom: 10px;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        .gif-container img {
+            width: 200px;
+            border-radius: 15px;
+            margin: 15px 0;
+        }
+
+        .apology-text {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            color: #555;
+        }
+
+        .gallery-title {
+            font-weight: bold;
+            font-size: 20px;
+            color: #ff6b81;
+            margin-bottom: 15px;
+        }
+
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+
+        /* Gaya Polaroid dengan Animasi Hover */
+        .polaroid {
+            background: white;
+            padding: 10px 10px 20px 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .polaroid img {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+        }
+
+        .polaroid:nth-child(odd) { transform: rotate(-5deg); }
+        .polaroid:nth-child(even) { transform: rotate(5deg); }
+
+        .polaroid:hover {
+            transform: scale(1.1) rotate(0deg);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            z-index: 10;
+        }
+
+        .btn-maaf {
+            background: #ff6b81;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            font-family: 'Fredoka One', cursive;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(255, 107, 129, 0.4);
+            animation: pulse 1.5s infinite;
+            transition: background 0.3s;
+        }
+
+        .btn-maaf:hover {
+            background: #ff4757;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 5px 15px rgba(255, 107, 129, 0.4); }
+            50% { transform: scale(1.05); box-shadow: 0 5px 25px rgba(255, 107, 129, 0.6); }
+            100% { transform: scale(1); box-shadow: 0 5px 15px rgba(255, 107, 129, 0.4); }
+        }
+
+        .hidden-message {
+            display: none;
+            margin-top: 20px;
+            animation: fadeIn 1s ease-in;
+        }
+
+        .hidden-message img {
+            width: 200px;
+            border-radius: 15px;
+            margin-top: 10px;
+        }
+
+        .hidden-message h2 {
+            color: #2ed573;
+            font-family: 'Fredoka One', cursive;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Animasi Hati Beterbangan (JavaScript) */
+        .heart {
+            position: absolute;
+            font-size: 24px;
+            color: #ff6b81;
+            animation: floatHeart 3s ease-in forwards;
+            pointer-events: none;
+        }
+
+        @keyframes floatHeart {
+            0% { transform: translateY(0) scale(1); opacity: 1; }
+            100% { transform: translateY(-100vh) scale(1.5); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Selamat Ulang Tahun, Mala! 🎂</h1>
+        
+        <div class="gif-container">
+            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExM3Y2ZmF5bXF6ZXZxdjZ1ZHZ4ZXZxZXZxZXZxZXZxdjZ1ZHZ4ZXZxZXZxZXZxZXZxZXZxdjZ1ZHZ4ZXZx/3o6ZtaO9BZHcOjmErm/giphy.gif" alt="Cute Apology GIF">
+        </div>
+
+        <div class="apology-text">
+            Aku bener-bener minta maaf karena lupa sama hari spesialmu ini. Nggak ada alasan, aku emang ceroboh banget. Tapi satu hal yang pasti, sayangku ke kamu nggak pernah berkurang sedikit pun. <br><br>
+            Tolong maafin kebodohanku ya? Aku udah siapin semua kenangan indah kita di bawah ini...
+        </div>
+
+        <div class="gallery-title">Memori Kita Berdua ✨</div>
+        
+        <div class="gallery">
+            <div class="polaroid">
+                <img src="https://via.placeholder.com/150/ff9a9e/ffffff?text=Foto+1" alt="Memori 1">
+            </div>
+            <div class="polaroid">
+                <img src="https://via.placeholder.com/150/fecfef/ffffff?text=Foto+2" alt="Memori 2">
+            </div>
+            <div class="polaroid">
+                <img src="https://via.placeholder.com/150/a1c4fd/ffffff?text=Foto+3" alt="Memori 3">
+            </div>
+            <div class="polaroid">
+                <img src="https://via.placeholder.com/150/c2e9fb/ffffff?text=Foto+4" alt="Memori 4">
+            </div>
+        </div>
+
+        <button class="btn-maaf" onclick="forgiveMe()">Mala, Maafin Aku Ya? 🥺</button>
+
+        <div class="hidden-message" id="successMsg">
+            <h2>Yeeey! Makasih Sayang! ❤️</h2>
+            <p>Aku janji bakal tebus hari ini dengan kencan spesial. *Get ready!*</p>
+            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExcWc1bWc1bWc1bWc1bWc1bWc1bWc1bWc1bWc1bWc1bWc1bWc1bWc1bWc1bWc1bWc1bWc1bWc1/10UeedrT5MIfPG/giphy.gif" alt="Happy Hug GIF">
+        </div>
+    </div>
+
+    <script>
+        function forgiveMe() {
+            // Sembunyikan tombol, tampilkan pesan sukses
+            document.querySelector('.btn-maaf').style.display = 'none';
+            document.getElementById('successMsg').style.display = 'block';
+            
+            // Efek Hati Beterbangan
+            for (let i = 0; i < 30; i++) {
+                createHeart();
+            }
+        }
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '❤️';
+            
+            // Posisi acak
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.top = '100vh'; // Mulai dari bawah layar
+            
+            // Ukuran dan durasi acak
+            const size = Math.random() * 1.5 + 0.5;
+            heart.style.transform = `scale(${size})`;
+            heart.style.animationDuration = Math.random() * 2 + 2 + 's';
+            
+            document.body.appendChild(heart);
+
+            // Hapus elemen setelah animasi selesai agar tidak memberatkan browser
+            setTimeout(() => {
+                heart.remove();
+            }, 4000);
+        }
+    </script>
+</body>
+</html>
