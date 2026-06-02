@@ -40,7 +40,7 @@
 
         /* General Progress Bar */
         .progress-container { width: 100%; border: 2px solid #fff; padding: 2px; margin: 20px 0; box-sizing: border-box; }
-        .progress-fill { width: 0%; height: 20px; background-color: #3498db; transition: width 0.2s; }
+        .progress-fill { width: 0%; height: 20px; background-color: #3498db; transition: width 0.1s; }
 
         /* Level 3: Slider */
         input[type=range] { width: 100%; margin: 20px 0; accent-color: #e74c3c; cursor: pointer; }
@@ -75,19 +75,19 @@
 
         /* STICKER STYLE */
         .sticker { width: 120px; height: auto; margin: 10px auto; display: block; }
+        .bonk-sticker { width: 150px; height: auto; margin: 0 auto 15px auto; display: block; transition: transform 0.1s; }
 
         @media (max-width: 480px) {
             body { padding: 15px; } h1 { font-size: 20px; } h2 { font-size: 12px; }
             .box-text { font-size: 10px; line-height: 1.8; padding: 12px; }
             .btn-next, .btn-choice, input[type=text], .gacha-box { font-size: 10px; }
             .window-content { font-size: 11px; }
-            .sticker { width: 100px; }
+            .sticker, .bonk-sticker { width: 100px; }
         }
     </style>
 </head>
 <body class="crt">
 
-    <!-- PAGE 0: TITLE -->
     <div id="page0" class="page active">
         <h1>MALA'S BIRTHDAY<br>QUEST</h1>
         <img src="media/91286-sendinglove.gif" class="sticker" alt="Love Sticker">
@@ -98,14 +98,12 @@
         </div>
     </div>
 
-    <!-- PAGE 1: TERMINAL TYPING -->
     <div id="page1" class="page">
         <h2>LEVEL 1: SYSTEM ERROR</h2>
         <div class="box-text" id="terminal-text"></div>
         <button class="btn-next" id="btn-next-1" onclick="goToPage(2)" style="display: none;">LANJUT ▼</button>
     </div>
 
-    <!-- PAGE 2: LOADING SCREEN -->
     <div id="page2" class="page">
         <h2>LEVEL 2: DIAGNOSTICS</h2>
         <div class="box-text">
@@ -119,7 +117,6 @@
         <button class="btn-next" id="btn-next-2" onclick="goToPage(3)" style="display: none;">REBOOT SYSTEM ▼</button>
     </div>
 
-    <!-- PAGE 3: SLIDER -->
     <div id="page3" class="page">
         <h2>LEVEL 3: PARAMETER TUNING</h2>
         <div class="box-text">
@@ -131,7 +128,6 @@
         <button class="btn-next" id="btn-next-3" onclick="goToPage(4)" disabled>LOCK PARAMETER ▼</button>
     </div>
 
-    <!-- PAGE 4: UJI HIPOTESIS (STATISTIK) -->
     <div id="page4" class="page">
         <h2>LEVEL 4: UJI HIPOTESIS STATISTIKA</h2>
         <div class="box-text">
@@ -150,22 +146,24 @@
         <button class="btn-next" id="btn-next-4" onclick="goToPage(5)" style="display:none;">LANJUT ▼</button>
     </div>
 
-    <!-- PAGE 5: TRAINING MODEL MACHINE LEARNING -->
     <div id="page5" class="page">
         <h2>LEVEL 5: TRAINING MODEL M.L.</h2>
+        
+        <img id="bonk-img" src="media/bonk-cat-ouch.gif" class="bonk-sticker" alt="Bonk Cat">
+
         <div class="box-text">
-            > Agar kelalaian ini tidak terulang, kita harus melatih <i>Machine Learning Model</i> khusus Pengingat Ulang Tahun.<br><br>
-            > TUGAS: Bantu Azmy melatih model ini dengan memencet tombol di bawah berkali-kali sampai akurasi mencapai 100%!
+            > Agar kelalaian ini tidak terulang, kita harus melatih <i>Machine Learning Model</i> dengan metode <strong>Backpropagation</strong> (alias digeplak pakai koran).<br><br>
+            > TUGAS: "Bonk" kepala Azmy berkali-kali untuk melatih ingatannya sampai akurasi 100%!
         </div>
         <div class="progress-container">
             <div class="progress-fill" id="trainBar" style="background-color: #e74c3c;"></div>
         </div>
-        <div id="trainText" style="font-size: 10px; color: #e74c3c; margin-bottom: 15px;">Akurasi: 0%</div>
-        <button class="btn-next" id="btn-train" onclick="trainModel()" style="background: #f1c40f; border-color: #f1c40f; color: #000; margin-top: 0;">KLIK UNTUK TRAINING!</button>
-        <button class="btn-next" id="btn-next-5" onclick="goToPage(6)" style="display:none;">MODEL SEMPURNA! LANJUT ▼</button>
+        <div id="trainText" style="font-size: 10px; color: #e74c3c; margin-bottom: 15px;">Akurasi Ingatan: 0%</div>
+        
+        <button class="btn-next" id="btn-train" onclick="trainModel()" style="background: #f1c40f; border-color: #f1c40f; color: #000; margin-top: 0; font-size: 14px;">BONK AZMY! 🔨</button>
+        <button class="btn-next" id="btn-next-5" onclick="goToPage(6)" style="display:none;">OTAK AZMY SUDAH BENAR! LANJUT ▼</button>
     </div>
 
-    <!-- PAGE 6: PASSWORD -->
     <div id="page6" class="page">
         <h2>LEVEL 6: SECURITY CHECK</h2>
         <div class="box-text">
@@ -177,7 +175,6 @@
         <button class="btn-next" onclick="checkPassword()">VERIFIKASI ▼</button>
     </div>
 
-    <!-- PAGE 7: GACHA ROULETTE -->
     <div id="page7" class="page">
         <h2>LEVEL 7: REWARD SYSTEM</h2>
         <div class="box-text">
@@ -189,7 +186,6 @@
         <button class="btn-next" id="btn-next-7" onclick="goToPage(8)" style="display:none;">AMBIL HADIAH ▼</button>
     </div>
 
-    <!-- PAGE 8: BOSS FIGHT -->
     <div id="page8" class="page">
         <h2>LEVEL 8: FINAL BOSS</h2>
         <div class="box-text">
@@ -204,13 +200,11 @@
         </div>
     </div>
 
-    <!-- PAGE 9: VICTORY & INTERACTIVE WISHES -->
     <div id="page9" class="page">
         <img src="media/32358-celebrate.png" class="sticker" style="width: 150px; margin-bottom: 0;" alt="Celebrate">
         <h2>QUEST COMPLETE! ❤️</h2>
         <div style="font-size: 10px; color: #2ecc71; margin-bottom: 15px;">STATUS: AZMY DIMAAFKAN!</div>
         
-        <!-- Jendela Retro Ucapan -->
         <div class="wish-window">
             <div class="window-title">
                 <span>Pesan_Spesial.txt</span>
@@ -227,7 +221,6 @@
 
         <div style="font-size: 10px; color: #f1c40f; margin-bottom: 10px;">> AKSES DATABASE MEMORI:</div>
         
-        <!-- Tombol Kontrol Foto -->
         <div class="photo-controls">
             <button class="photo-btn" onclick="showPhoto(1)">📸 Memori 1</button>
             <button class="photo-btn" onclick="showPhoto(2)">📸 Memori 2</button>
@@ -235,7 +228,6 @@
             <button class="photo-btn surprise" onclick="showPhoto(4)">🎁 Kejutan!</button>
         </div>
 
-        <!-- Layar Penampil Foto -->
         <div class="photo-display">
             <span id="photo-placeholder" style="font-size: 10px; color: #555;">[ Tidak ada data yang ditampilkan ]</span>
             <img id="finalPhoto" src="" alt="Memori">
@@ -312,6 +304,14 @@
         // LEVEL 5: TRAINING MODEL MACHINE LEARNING (SPAM CLICK)
         let accuracy = 0;
         function trainModel() {
+            // Trik memuat ulang GIF agar memukul berulang kali saat dipencet
+            let bonkImg = document.getElementById("bonk-img");
+            bonkImg.src = "media/bonk-cat-ouch.gif?t=" + new Date().getTime();
+            
+            // Efek getar cepat
+            bonkImg.style.transform = "scale(0.9)";
+            setTimeout(() => { bonkImg.style.transform = "scale(1)"; }, 50);
+
             accuracy += 10; 
             if(accuracy > 100) accuracy = 100;
             
@@ -319,12 +319,12 @@
             let text = document.getElementById("trainText");
             
             bar.style.width = accuracy + '%';
-            text.innerHTML = "Akurasi: " + accuracy + "%";
+            text.innerHTML = "Akurasi Ingatan: " + accuracy + "%";
             
             if(accuracy >= 100) {
                 bar.style.backgroundColor = "#2ecc71";
                 text.style.color = "#2ecc71";
-                text.innerHTML = "Akurasi: 100% (Model Siap Deployment!)";
+                text.innerHTML = "Akurasi: 100% (Ingatan Azmy Pulih!)";
                 document.getElementById("btn-train").style.display = "none";
                 document.getElementById("btn-next-5").style.display = "block";
             }
@@ -382,7 +382,6 @@
             placeholder.style.display = 'none';
             img.style.display = 'block';
 
-            // GANTI LINK DI BAWAH INI DENGAN NAMA FILE FOTOMU SENDIRI NANTI (Jangan lupa letakkan di dalam folder media juga ya)
             if(num === 1) {
                 img.src = 'https://picsum.photos/400/400?random=1';
             } else if(num === 2) {
@@ -390,7 +389,6 @@
             } else if(num === 3) {
                 img.src = 'https://picsum.photos/400/400?random=3';
             } else if(num === 4) {
-                // Stiker Kejutan memanggil dari folder media
                 img.src = 'media/96701-gomaconfettipopper.png';
             }
         }
