@@ -3,13 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Misi: Minta Maaf ke Mala</title>
+    <title>Misi: Mala's Birthday Quest</title>
     <style>
-        /* Import Font 8-bit dari Google Fonts */
         @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
         body {
-            background-color: #111;
+            background-color: #050505;
             color: #fff;
             font-family: 'Press Start 2P', cursive;
             margin: 0;
@@ -19,100 +18,177 @@
             align-items: center;
             min-height: 100vh;
             overflow: hidden;
+            text-align: center;
         }
 
-        /* Efek layar CRT (TV Tabung jadul) */
         .crt::before {
             content: " ";
             display: block;
             position: absolute;
             top: 0; left: 0; bottom: 0; right: 0;
             background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%);
-            z-index: 2;
+            z-index: 10;
             background-size: 100% 4px;
             pointer-events: none;
         }
 
-        .game-container {
+        .page {
+            display: none; /* Sembunyikan semua halaman secara default */
             width: 100%;
             max-width: 600px;
+            z-index: 5;
             position: relative;
-            z-index: 3;
+            animation: fadeIn 0.5s ease-in;
         }
 
-        .header {
-            text-align: center;
-            color: #f1c40f;
-            margin-bottom: 20px;
-            line-height: 1.5;
-            font-size: 18px;
-            text-shadow: 2px 2px #e74c3c;
-            animation: blink 1s step-end infinite;
+        .page.active {
+            display: block; /* Tampilkan hanya halaman yang aktif */
         }
 
-        @keyframes blink {
-            50% { opacity: 0; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
         }
 
-        /* Kotak Dialog ala RPG */
-        .rpg-box {
-            background-color: #000;
-            border: 4px solid #fff;
-            border-radius: 5px;
-            padding: 15px;
-            margin-bottom: 20px;
-            box-shadow: 4px 4px 0px rgba(255,255,255,0.3);
-            font-size: 12px;
-            line-height: 1.8;
-            position: relative;
-        }
+        h1 { color: #f1c40f; font-size: 24px; line-height: 1.5; text-shadow: 2px 2px #e74c3c; }
+        h2 { color: #3498db; font-size: 16px; margin-bottom: 20px; }
+        
+        p { font-size: 12px; line-height: 2; margin-bottom: 20px; text-align: left; background: #111; padding: 15px; border: 2px solid #fff; border-radius: 5px; }
 
-        .rpg-box::after {
-            content: "▼";
-            position: absolute;
-            bottom: 5px;
-            right: 10px;
-            animation: bounceArrow 0.5s infinite alternate;
-        }
+        .blink { animation: blinker 1s linear infinite; }
+        @keyframes blinker { 50% { opacity: 0; } }
 
-        @keyframes bounceArrow {
-            from { transform: translateY(0); }
-            to { transform: translateY(5px); }
-        }
-
-        .character-name {
-            color: #3498db;
-            margin-bottom: 10px;
-        }
-
-        /* Galeri ala Inventory Game */
-        .inventory-title {
+        .btn-next {
+            background: transparent;
             color: #2ecc71;
-            font-size: 10px;
-            margin-bottom: 10px;
-            text-align: center;
+            border: none;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 14px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        .btn-next:hover { color: #fff; }
+
+        /* Khusus Halaman 5 (Pilihan) */
+        .action-menu { display: flex; justify-content: space-between; gap: 10px; position: relative; margin-top: 20px; }
+        .btn-choice { background: #000; color: #fff; border: 2px solid #fff; padding: 15px; font-family: 'Press Start 2P', cursive; font-size: 12px; cursor: pointer; width: 48%; }
+        .btn-yes { border-color: #2ecc71; }
+        .btn-yes:hover { background: #2ecc71; color: #000; }
+        .btn-no { border-color: #e74c3c; position: relative; }
+
+        /* Khusus Halaman 6 (Galeri) */
+        .inventory-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-top: 20px; }
+        .item-slot { border: 2px solid #555; padding: 5px; background: #222; }
+        .item-slot img { width: 100%; height: 120px; object-fit: cover; }
+    </style>
+</head>
+<body class="crt">
+
+    <!-- PAGE 1: TITLE SCREEN -->
+    <div id="page1" class="page active">
+        <h1>MALA'S BIRTHDAY<br>QUEST</h1>
+        <br><br>
+        <div class="blink" style="color: #fff; font-size: 12px; cursor: pointer;" onclick="goToPage(2)">
+            [ PRESS START TO PLAY ]
+        </div>
+    </div>
+
+    <!-- PAGE 2: THE ERROR / CONFESSION -->
+    <div id="page2" class="page">
+        <h2>LEVEL 1: SYSTEM ERROR</h2>
+        <p>
+            > WARNING: Anomali terdeteksi.<br><br>
+            > Memori utama mengalami *glitch* dan melewatkan tanggal paling penting di kalender: Ulang Tahun Mala.<br><br>
+            > Status Player 1: Sangat panik dan merasa bersalah tingkat dewa.
+        </p>
+        <button class="btn-next" onclick="goToPage(3)">LANJUT ▼</button>
+    </div>
+
+    <!-- PAGE 3: DATA ANALYSIS -->
+    <div id="page3" class="page">
+        <h2>LEVEL 2: DATA ANALYSIS</h2>
+        <p>
+            > Menjalankan model prediksi untuk mengukur dampak kecerobohan...<br><br>
+            > Hasil observasi:<br>
+            - Tingkat kelalaianku: 99.9%<br>
+            - Tingkat perasaanku ke kamu: Tetap 100% stabil, tidak terpengaruh *outlier* apapun.<br><br>
+            > Kesimpulan model: Aku butuh maafmu agar sistem hidupku kembali normal.
+        </p>
+        <button class="btn-next" onclick="goToPage(4)">LANJUT ▼</button>
+    </div>
+
+    <!-- PAGE 4: REBUILDING THE FUTURE -->
+    <div id="page4" class="page">
+        <h2>LEVEL 3: CITY PLANNING</h2>
+        <p>
+            > Membuka *blueprint* masa depan...<br><br>
+            > Untuk menebus kesalahan, aku berjanji akan merancang ulang zona prioritasku.<br><br>
+            > Menempatkan "Mala" di pusat tata kota hatiku, membangun taman hiburan spesial untuk kencan kita selanjutnya, dan memastikan jalanan bebas macet dari hal-hal yang bikin kamu sedih.
+        </p>
+        <button class="btn-next" onclick="goToPage(5)">LANJUT ▼</button>
+    </div>
+
+    <!-- PAGE 5: THE BOSS FIGHT (RUNNING BUTTON) -->
+    <div id="page5" class="page">
+        <h2>LEVEL 4: FINAL BOSS</h2>
+        <p>
+            > Player 1 menyerahkan diri.<br><br>
+            > "Mala, aku beneran minta maaf ya? Tolong terima permintaanku dan *unlock* hadiah kenang-kenangan dari aku."<br><br>
+            > Apakah kamu mau memaafkan Player 1?
+        </p>
+        <div class="action-menu">
+            <button class="btn-choice btn-yes" onclick="goToPage(6)">> MAAFIN</button>
+            <button class="btn-choice btn-no" id="btn-no">> GAK MAU!</button>
+        </div>
+    </div>
+
+    <!-- PAGE 6: VICTORY & GALLERY -->
+    <div id="page6" class="page">
+        <h2>QUEST COMPLETE!</h2>
+        <div style="font-size: 40px; margin-bottom: 10px;">❤️</div>
+        <div style="font-size: 10px; color: #2ecc71;">EXP +10000 | STATUS: Dimaafkan</div>
+        
+        <div class="inventory-grid">
+            <!-- Ganti src di bawah dengan link foto kalian nanti -->
+            <div class="item-slot"><img src="https://picsum.photos/200/200?random=1" alt="Memori 1"></div>
+            <div class="item-slot"><img src="https://picsum.photos/200/200?random=2" alt="Memori 2"></div>
+            <div class="item-slot"><img src="https://picsum.photos/200/200?random=3" alt="Memori 3"></div>
+            <div class="item-slot"><img src="https://picsum.photos/200/200?random=4" alt="Memori 4"></div>
+        </div>
+        <br>
+        <div style="font-size: 10px; line-height: 1.5; color: #f1c40f;">
+            Terima kasih sayang!<br>Siap-siap untuk *special event* akhir pekan ini ya!
+        </div>
+    </div>
+
+    <script>
+        // Fungsi untuk pindah halaman
+        function goToPage(pageNumber) {
+            // Sembunyikan semua halaman
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => page.classList.remove('active'));
+
+            // Tampilkan halaman yang dituju
+            document.getElementById('page' + pageNumber).classList.add('active');
         }
 
-        .inventory-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-            margin-bottom: 20px;
+        // Trik tombol lari di Halaman 5
+        const btnNo = document.getElementById('btn-no');
+        
+        function moveButton() {
+            const x = Math.floor(Math.random() * 150) - 75; 
+            const y = Math.floor(Math.random() * 100) - 50;  
+            btnNo.style.transform = `translate(${x}px, ${y}px)`;
         }
 
-        .item-slot {
-            border: 2px solid #555;
-            background: #222;
-            padding: 5px;
-            text-align: center;
-            transition: border-color 0.3s;
-        }
-
-        .item-slot:hover {
-            border-color: #f1c40f;
-        }
-
-        .item-slot img {
+        btnNo.addEventListener('mouseover', moveButton);
+        btnNo.addEventListener('touchstart', function(e) {
+            e.preventDefault(); 
+            moveButton();
+        });
+    </script>
+</body>
+</html>        .item-slot img {
             width: 100%;
             height: 120px;
             object-fit: cover;
